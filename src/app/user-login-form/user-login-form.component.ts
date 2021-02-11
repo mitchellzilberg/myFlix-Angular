@@ -12,7 +12,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userData = { username: '', password: '' };
+  @Input() userData = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: UserLoginService,
