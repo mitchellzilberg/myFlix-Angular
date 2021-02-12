@@ -73,19 +73,28 @@ export class UserLoginService {
   providedIn: 'root'
 })
 
+
 export class GetAllMoviesService {
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient) { }
+  // Making API to get All Movies
+  getAllMovies(): Observable<any> {
+    const token = localStorage.getItem('token');
+    return this.http
+      .get(apiUrl + 'movies', {
+        headers: new HttpHeaders(
+          {
+            Authorization: 'Bearer ' + token,
+          }
+        ),
+      }).pipe(
+        // map(this.extractResponseData),
+        catchError(this.handleError)
+      );
+
+      
   }
 
-  //making the api call to the get movies endpoint
-  public getAllMovies(movieDetails: any): Observable<any> {
-    console.log(movieDetails);
-    return this.http.get(apiUrl + 'movies', movieDetails).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  //Non-typed response extraction
+  // Non-typed response extraction
   // private extractResponseData(res: Response): any {
   //   const body = res;
   //   return body || { };
