@@ -49,6 +49,7 @@ export class UserLoginService {
   //making the api call to the user login endpoint
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
+    localStorage.setItem ('token', userDetails.token);
     return this.http
       .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
@@ -89,9 +90,7 @@ export class GetAllMoviesService {
       }).pipe(
         // map(this.extractResponseData),
         catchError(this.handleError)
-      );
-
-      
+      );    
   }
 
   // Non-typed response extraction
