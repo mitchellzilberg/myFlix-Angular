@@ -1,10 +1,53 @@
-<!-- <p>movie-card works!</p> -->
-
-<mat-card *ngFor="let movie of movies; let i=index;">
-  <mat-dialog-content>
-    <mat-card-title>{{movie.Title}}</mat-card-title>
-    <mat-card-subtitle>
-      <img src={{movie.ImagePath}}/>
-    </mat-card-subtitle>
-  </mat-dialog-content>
-</mat-card>
+<!-- <app-navbar></app-navbar> -->
+<div class="container">
+  <mat-card *ngFor="let movie of movies; let i = index" class="card">
+    <mat-icon (click)="addToFavorites(movie._id, movie.title)"
+      >favorite_border</mat-icon
+    >
+    <mat-card-header class="card_header">
+      <mat-card-title class="card_title">{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle class="card_subtitle"
+        ><span>Directed by: {{ movie.director.name }}</span></mat-card-subtitle
+      >
+    </mat-card-header>
+    <img
+      style="width: 150px;"
+      src="{{ movie.imagePath }}"
+      alt="{{ movie.title }}"
+      class="card_image"
+    />
+    <div class="buttons">
+      <button
+        mat-raised-button
+        (click)="openSynopsisDialog(movie.description, movie.imagePath)"
+        class="button_synopsis"
+      >
+        Synopsis
+      </button>
+      <button
+        mat-raised-button
+        (click)="
+          openGenreDialog(
+            movie.genre.name,
+            movie.genre.description
+          )"
+        class="button_genre"
+      >
+        Genre
+      </button>
+      <button
+        mat-raised-button
+        (click)="
+          openDirectorDialog(
+            movie.director.name,
+            movie.director.bio,
+            movie.director.birth,
+            movie.director.death
+          )"
+        class="button_director"
+      >
+        Director
+      </button>
+    </div>
+  </mat-card>
+</div>
