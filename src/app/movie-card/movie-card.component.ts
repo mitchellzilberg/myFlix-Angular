@@ -6,13 +6,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { 
   // FetchApiDataService,
   GetAllMoviesService,
-  AddFavoriteMovieService,  
+  AddFavouriteMovieService,  
 } from '../fetch-api-data.service';
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
-
-
 
 
 @Component({
@@ -25,7 +23,7 @@ export class MovieCardComponent implements OnInit {
   
   constructor(
     public fetchApiData: GetAllMoviesService,
-    public fetchApiData2: AddFavoriteMovieService,
+    public fetchApiData2: AddFavouriteMovieService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar
     ) { }
@@ -42,11 +40,11 @@ export class MovieCardComponent implements OnInit {
       });
   }
 
-  addToFavorites(id: string, title: string) {
-    this.fetchApiData2.addFavoriteMovie(id).subscribe((resp: any) => {
+  addToFavourites(id: string, title: string) {
+    this.fetchApiData2.addFavouriteMovie(id).subscribe((resp: any) => { 
       console.log(resp);
       this.snackBar.open(
-        `"${title}" added to your Favorite Movies List`,
+        `"${title}" added to your Favourite Movies List`,
         'OK',
         {
           duration: 1500,

@@ -23,11 +23,13 @@ import { MovieGenreComponent } from './movie-genre/movie-genre.component';
 import { MovieSynopsisComponent } from './movie-synopsis/movie-synopsis.component';
 
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: ProfilePageComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -42,6 +44,7 @@ const appRoutes: Routes = [
     MovieGenreComponent,
     MovieSynopsisComponent,
     ProfilePageComponent,
+    NavbarComponent,
 
   ],
   imports: [

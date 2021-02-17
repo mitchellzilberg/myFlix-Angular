@@ -86,13 +86,13 @@ export class GetAllMoviesService {
           }
         ),
       }).pipe(
-        // map(this.extractResponseData),
+        map(this.extractResponseData),
         catchError(this.handleError)
       );    
   }
 
   // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || { };
   }
@@ -128,11 +128,11 @@ export class GetOneMovieService {
           Authorization: 'Bearer' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), 
-      // catchError(this.handleError));
+      .pipe(map(this.extractResponseData), 
+      catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -165,10 +165,10 @@ export class GetDirectorService {
           Authorization: 'Bearer' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -201,10 +201,10 @@ export class GetGenreService {
           Authorization: 'Bearer' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -229,7 +229,7 @@ export class GetUserService {
   constructor(private http: HttpClient) {}
 
   //api call to get user data by Username
-  getUser(username: string): Observable<any> {
+  getUser(): Observable<any> { //username: string
     const token = localStorage.getItem('token');
     return this.http
       .get(apiUrl + 'users/:username', {
@@ -237,11 +237,11 @@ export class GetUserService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), 
-      // catchError(this.handleError));
+      .pipe(map(this.extractResponseData), 
+      catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -263,21 +263,21 @@ export class GetUserService {
   providedIn: 'root'
 })
 
-export class GetFavoriteMoviesService{
+export class GetFavouriteMoviesService{
   constructor(private http: HttpClient) {
   }
 
-  //making api call to get the user's favorite movies
-  public getFavoriteMovies(userDetails: any): Observable<any> {
+  //making api call to get the user's favourite movies
+  public getFavouriteMovies(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.get(apiUrl + 'users/:username/movies/:movieID', userDetails)
-    // .pipe(
-    //   map(this.extractResponseData), 
-    //   catchError(this.handleError)
-    // );
+    .pipe(
+      map(this.extractResponseData), 
+      catchError(this.handleError)
+    );
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || { };
   }
@@ -301,26 +301,26 @@ export class GetFavoriteMoviesService{
   providedIn: 'root'
 })
 
-export class AddFavoriteMovieService {
+export class AddFavouriteMovieService {
   constructor(private http: HttpClient) {}
 
-  //api call to add a favorite movie
-  addFavoriteMovie(id: string): Observable<any> {
-    console.log(id);
+  //api call to add a favourite movie
+  addFavouriteMovie(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     console.log(username);
     console.log(token);
+    console.log(id);
     return this.http
-      .put(apiUrl + 'users/:username/movies/:movieID', id, {
+      .post(`${apiUrl}users/${username}/movies/${id}`, id, {
         headers: new HttpHeaders({
           Authorization: `Bearer ${token}`,
         }),
       })
-      // .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -341,11 +341,11 @@ export class AddFavoriteMovieService {
   providedIn: 'root'
 })
 
-export class DeleteFavoriteMovieService {
+export class DeleteFavouriteMovieService {
   constructor(private http: HttpClient) {}
 
-  //api call to delete a favorite movie
-  deleteFavoriteMovie(id: string): Observable<any> {
+  //api call to delete a favourite movie
+  deleteFavouriteMovie(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http
@@ -354,10 +354,10 @@ export class DeleteFavoriteMovieService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -391,10 +391,10 @@ export class EditUserService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }
@@ -427,10 +427,10 @@ export class DeleteUserService {
           Authorization: 'Bearer' + token,
         }),
       })
-      // .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  private extractResponseData(res: Response): any {
+  private extractResponseData(res: Object): any {
     const body = res;
     return body || {};
   }

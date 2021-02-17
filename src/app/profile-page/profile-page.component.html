@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="profile_page">
   <mat-card class="update_container">
     <mat-card-header class="update_header">
@@ -47,15 +48,15 @@
       </button> -->
     </mat-card-actions>
   </mat-card>
-  <h1 class="favorite_movies_title">Your Favorite Movies</h1>
-  <div class="no_favorites"></div>
+  <h1 class="favourite_movies_title">Your Favourite Movies</h1>
+  <div class="no_favourites"></div>
   <div class="movie_container">
     <mat-card
-      *ngFor="let movie of favoriteMovies; let i = index"
+      *ngFor="let movie of favouriteMovies; let i = index"
       class="card active"
       >
-      <!-- <mat-icon (click)="deleteFavoriteMovie(movie._id, movie.title, i)"
-        >clear</mat-icon -->
+      <mat-icon (click)="deleteFavouriteMovie(movie._id, movie.title, i)"
+        >clear</mat-icon
       >
       <mat-card-header class="card_header">
         <mat-card-title class="card_title">{{ movie.title }}</mat-card-title>
@@ -71,14 +72,14 @@
         class="card_image"
       />
       <div class="buttons">
-        <!-- <button
+        <button
           mat-raised-button
           (click)="openSynopsisDialog(movie.description, movie.imagePath)"
           class="button_synopsis"
         >
           Synopsis
-        </button> -->
-        <!-- <button
+        </button>
+        <button
           mat-raised-button
           (click)="
             openGenreDialog(
@@ -90,8 +91,8 @@
           class="button_genre"
         >
           Genre
-        </button> -->
-        <!-- <button
+        </button>
+        <button
           mat-raised-button
           (click)="
             openDirectorDialog(
@@ -105,7 +106,7 @@
           class="button_director"
         >
           Director
-        </button> -->
+        </button>
       </div>
     </mat-card>
   </div>
