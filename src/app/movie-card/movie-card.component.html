@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container">
   <mat-card *ngFor="let movie of movies; let i = index" class="card">
-    <mat-icon (click)="addToFavourites(movie._id, movie.title)"
+    <mat-icon (click)="addToFavourites(movie.id, movie.title)"
       >favorite_border</mat-icon
     >
     <mat-card-header class="card_header">

@@ -20,7 +20,7 @@ import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.compone
   styleUrls: ['./profile-page.component.scss'],
 })
 export class ProfilePageComponent implements OnInit { //implements OnInit
-  @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() userData = { username: '', password: '', email: '', birthday: '' };
 
   movies: any[] = [];
   favouriteMovies: any[] = [];
@@ -69,7 +69,7 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
 
       console.log(this.movies);
       this.movies.forEach((movie) => {
-        if (this.favouriteMovieIDs.includes(movie._id))
+        if (this.favouriteMovieIDs.includes(movie.id))
           this.favouriteMovies.push(movie);
       });
       console.log(this.favouriteMovies);

@@ -11,7 +11,7 @@
           <input
             matInput
             class="input"
-            [(ngModel)]="userData.Username"
+            [(ngModel)]="userData.username"
             placeholder="Username"
             type="text"
             name="Username"
@@ -23,7 +23,7 @@
           <input
             matInput
             class="input"
-            [(ngModel)]="userData.Password"
+            [(ngModel)]="userData.password"
             type="password"
             placeholder="Password"
             name="Password"
@@ -34,7 +34,7 @@
           <input
             matInput
             class="input"
-            [(ngModel)]="userData.Email"
+            [(ngModel)]="userData.email"
             type="email"
             placeholder="Email"
             name="Email"
@@ -43,9 +43,9 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <!-- <button mat-raised-button (click)="editUserData()" class="update_button">
+      <button mat-raised-button (click)="editUserData()" class="update_button">
         Submit
-      </button> -->
+      </button>
     </mat-card-actions>
   </mat-card>
   <h1 class="favourite_movies_title">Your Favourite Movies</h1>
@@ -55,7 +55,7 @@
       *ngFor="let movie of favouriteMovies; let i = index"
       class="card active"
       >
-      <mat-icon (click)="deleteFavouriteMovie(movie._id, movie.title, i)"
+      <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title, i)"
         >clear</mat-icon
       >
       <mat-card-header class="card_header">
