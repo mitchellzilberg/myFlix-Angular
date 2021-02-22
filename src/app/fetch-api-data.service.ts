@@ -60,7 +60,7 @@ export class UserLoginService {
     } else {
       console.error(
         `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`
+        `Error body is: ${error.error}`, error.error
       );
     }
     return throwError(
@@ -229,10 +229,10 @@ export class GetUserService {
   constructor(private http: HttpClient) {}
 
   //api call to get user data by Username
-  getUser(): Observable<any> { //username: string
+  getUser(username: string): Observable<any> { //username: string
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'users/:username', {
+      .get(`${apiUrl}users/${username}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -384,10 +384,24 @@ export class EditUserService {
 
   //api call to edit the user's information
   editUser(userDetails: any): Observable<any> {
+    console.log(userDetails);
+    if (!userDetails.username) {
+      delete userDetails.username;
+    }
+    if (!userDetails.password) {
+      delete userDetails.password;
+    }
+    if (!userDetails.email) {
+      delete userDetails.email;
+    }
+    if (!userDetails.birthday) {
+      delete userDetails.birthday;
+    }
+    console.log(userDetails);
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http
-      .put(apiUrl + 'users/:username', userDetails, {
+      .put(`${apiUrl}users/${username}`, userDetails, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),

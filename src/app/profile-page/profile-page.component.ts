@@ -43,11 +43,11 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
   }
 
   getFavouriteMovies(): void {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('user') || '';
     console.log(user);
 
-    this.fetchApiDataUser.getUser().subscribe((resp: any) => {
-      this.favouriteMovieIDs = resp.FavouriteMovies;
+    this.fetchApiDataUser.getUser(user).subscribe((resp: any) => {
+      this.favouriteMovieIDs = resp.favouriteMovies;
       // console.log(resp);
       // console.log(this.favouriteMovieIDs);
       // if (this.favouriteMovieIDs.length === 0) {
