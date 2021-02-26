@@ -4,10 +4,17 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+// const apiUrl = 'http://localhost:8080/';
+// @Injectable({
+//   providedIn: 'root'
+// })
+
 const apiUrl = 'https://radiant-journey-16913.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
+
+
 
 export class UserRegistrationService {
   //Inject the HttpClient module to the constructor params
@@ -350,7 +357,7 @@ export class DeleteFavouriteMovieService {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('user');
     return this.http
-      .delete(apiUrl + 'users/:username/movies/:movieID', {
+      .delete(apiUrl + `users/${username}/movies/${id}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -385,23 +392,10 @@ export class EditUserService {
   //api call to edit the user's information
   editUser(userDetails: any): Observable<any> {
     console.log(userDetails);
-    if (!userDetails.username) {
-      delete userDetails.username;
-    }
-    if (!userDetails.password) {
-      delete userDetails.password;
-    }
-    if (!userDetails.email) {
-      delete userDetails.email;
-    }
-    if (!userDetails.birthday) {
-      delete userDetails.birthday;
-    }
-    console.log(userDetails);
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('user');
+    const id = localStorage.getItem('id');
     return this.http
-      .put(`${apiUrl}users/${username}`, userDetails, {
+      .put(`${apiUrl}users/${id}`, userDetails, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),

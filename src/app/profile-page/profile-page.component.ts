@@ -13,6 +13,7 @@ import {
 import { MovieDirectorComponent } from '../movie-director/movie-director.component';
 import { MovieGenreComponent } from '../movie-genre/movie-genre.component';
 import { MovieSynopsisComponent } from '../movie-synopsis/movie-synopsis.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-page',
@@ -96,7 +97,7 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
   //     noFavourites.innerHTML = `<h3>You haven't chosen any favourite movies yet!</h3>`;
   // }
 
-  editUserData(): void {
+  editUserData(form: NgForm): void {
     this.fetchApiData.editUser(this.userData).subscribe(
       (result) => {
         console.log(result);
@@ -107,6 +108,7 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
       },
       (result) => {
         console.log(result);
+        form.resetForm();
         this.snackBar.open(result, 'OK', {
           duration: 5000,
         });

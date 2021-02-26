@@ -5,7 +5,7 @@
       <mat-card-title class="update_title">Update Profile</mat-card-title>
     </mat-card-header>
     <mat-card-content class="update_card_content">
-      <form>
+      <form #userUpdateForm="ngForm">
         <mat-form-field>
           <mat-hint>Must be at least 5 characters</mat-hint>
           <input
@@ -43,7 +43,7 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button (click)="editUserData()" class="update_button">
+      <button mat-raised-button (click)="editUserData(userUpdateForm)" class="update_button">
         Submit
       </button>
     </mat-card-actions>
@@ -55,11 +55,12 @@
       *ngFor="let movie of favouriteMovies; let i = index"
       class="card active"
       >
-      <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title, i)"
-        >clear</mat-icon
-      >
+      <!-- <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title, i)"
+        >clear</mat-icon> -->
       <mat-card-header class="card_header">
         <mat-card-title class="card_title">{{ movie.title }}</mat-card-title>
+        <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title, i)"
+        >clear</mat-icon>
         <mat-card-subtitle class="card_subtitle"
           ><span
             >Directed by: {{ movie.director.name }}</span
