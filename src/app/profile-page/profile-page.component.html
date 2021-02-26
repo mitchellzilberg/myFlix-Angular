@@ -59,8 +59,8 @@
         >clear</mat-icon> -->
       <mat-card-header class="card_header">
         <mat-card-title class="card_title">{{ movie.title }}</mat-card-title>
-        <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title, i)"
-        >clear</mat-icon>
+        <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title)"
+        >delete</mat-icon>
         <mat-card-subtitle class="card_subtitle"
           ><span
             >Directed by: {{ movie.director.name }}</span

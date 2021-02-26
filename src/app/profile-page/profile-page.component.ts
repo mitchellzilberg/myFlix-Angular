@@ -78,15 +78,12 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
     });
   }
 
-  deleteFavouriteMovie(id: string, title: string, i: number): void {
+  deleteFavouriteMovie(id: string, title: string): void {
     this.fetchApiDataDeleteMovie
       .deleteFavouriteMovie(id)
       .subscribe((resp: any) => {
-        let cards = document.querySelectorAll('.card');
-        let tempCards = Array.from(cards);
-        tempCards[i].classList.remove('active');
-        tempCards[i].classList.add('delete');
-        // this.checkNoFavourites();
+        console.log(resp);
+        window.location.reload();
       });
   }
 
@@ -101,6 +98,7 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
     this.fetchApiData.editUser(this.userData).subscribe(
       (result) => {
         console.log(result);
+        form.resetForm();
         this.snackBar.open('Your profile was successfully updated!', 'OK', {
           duration: 3000,
           verticalPosition: 'top',
@@ -108,7 +106,7 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
       },
       (result) => {
         console.log(result);
-        form.resetForm();
+        // form.resetForm();
         this.snackBar.open(result, 'OK', {
           duration: 5000,
         });
