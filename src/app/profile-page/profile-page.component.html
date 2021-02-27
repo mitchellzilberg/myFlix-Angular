@@ -1,0 +1,114 @@
+<app-navbar></app-navbar>
+<div class="profile_page">
+  <mat-card class="update_container">
+    <mat-card-header class="update_header">
+      <mat-card-title class="update_title">Update Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="update_card_content">
+      <form #userUpdateForm="ngForm">
+        <mat-form-field>
+          <mat-hint>Must be at least 5 characters</mat-hint>
+          <input
+            matInput
+            class="input"
+            [(ngModel)]="userData.username"
+            placeholder="Username"
+            type="text"
+            name="Username"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-hint>Must be alphanumeric and at least 5 characters</mat-hint>
+          <input
+            matInput
+            class="input"
+            [(ngModel)]="userData.password"
+            type="password"
+            placeholder="Password"
+            name="Password"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            class="input"
+            [(ngModel)]="userData.email"
+            type="email"
+            placeholder="Email"
+            name="Email"
+          />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="editUserData(userUpdateForm)" class="update_button">
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <h1 class="favourite_movies_title">Your Favourite Movies</h1>
+  <div class="no_favourites"></div>
+  <div class="movie_container">
+    <mat-card
+      *ngFor="let movie of favouriteMovies; let i = index"
+      class="card active"
+      >
+      <!-- <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title, i)"
+        >clear</mat-icon> -->
+      <mat-card-header class="card_header">
+        <mat-card-title class="card_title">{{ movie.title }}</mat-card-title>
+        <mat-icon (click)="deleteFavouriteMovie(movie.id, movie.title)"
+        >delete</mat-icon>
+        <mat-card-subtitle class="card_subtitle"
+          ><span
+            >Directed by: {{ movie.director.name }}</span
+          ></mat-card-subtitle
+        >
+      </mat-card-header>
+      <img
+        src="{{ movie.imagePath }}"
+        alt="{{ movie.title }}"
+        class="card_image"
+      />
+      <div class="buttons">
+        <button
+          mat-raised-button
+          (click)="openSynopsisDialog(movie.description, movie.imagePath)"
+          class="button_synopsis"
+        >
+          Synopsis
+        </button>
+        <button
+          mat-raised-button
+          (click)="
+            openGenreDialog(
+              movie.genre.name,
+              movie.genre.description,
+              movie.imagePath
+            )
+          "
+          class="button_genre"
+        >
+          Genre
+        </button>
+        <button
+          mat-raised-button
+          (click)="
+            openDirectorDialog(
+              movie.director.name,
+              movie.director.bio,
+              movie.director.birth,
+              movie.director.death,
+              movie.imagePath
+            )
+          "
+          class="button_director"
+        >
+          Director
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>
