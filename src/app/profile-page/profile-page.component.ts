@@ -43,18 +43,16 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
     this.getFavouriteMovies();
   }
 
+  /**
+   * Function to get list of Favourite movies
+   */
+
   getFavouriteMovies(): void {
     const user = localStorage.getItem('user') || '';
     console.log(user);
 
     this.fetchApiDataUser.getUser(user).subscribe((resp: any) => {
       this.favouriteMovieIDs = resp.favouriteMovies;
-      // console.log(resp);
-      // console.log(this.favouriteMovieIDs);
-      // if (this.favouriteMovieIDs.length === 0) {
-      //   let noFavourites = document.querySelector('.no_favorites');
-      //   noFavourites.innerHTML = `<h3>You haven't chosen any favourite movies yet!</h3>`;
-      // }
 
       return this.favouriteMovieIDs;
     });
@@ -62,6 +60,10 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
       this.getMovies();
     }, 100);
   }
+
+  /**
+   * Functoin to get list of movies
+   */
 
   getMovies(): void {
     this.fetchApiDataAllMovies.getAllMovies().subscribe((resp: any) => {
@@ -78,6 +80,11 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
     });
   }
 
+  /**
+   * Function to delete user 
+   * @param id user id
+   */
+
   deleteFavouriteMovie(id: string, title: string): void {
     this.fetchApiDataDeleteMovie
       .deleteFavouriteMovie(id)
@@ -87,12 +94,10 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
       });
   }
 
-  // checkNoFavourites() {
-  //   let container = document.querySelector('.movie_container');
-  //   let noFavourites = document.querySelector('.no_favourites');
-  //   if (container.querySelectorAll('.active').length < 1)
-  //     noFavourites.innerHTML = `<h3>You haven't chosen any favourite movies yet!</h3>`;
-  // }
+ /**
+   * Function to Edit users info
+   * @param this.userData data requested from database
+   */
 
   editUserData(form: NgForm): void {
     this.fetchApiData.editUser(this.userData).subscribe(
@@ -114,6 +119,13 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
     );
   }
 
+  /**
+ * Function to open movies Dialog
+ * @param Description Movie's description
+ * @param Image Image of the movie
+ * @param Title Movie's title
+ */
+
   openSynopsisDialog(synopsis: string, image: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: { synopsis, image },
@@ -122,6 +134,12 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
     });
   }
 
+  /**
+   * function to open genre dialog
+   * @param Name Gener Name/Title
+   * @param Description Gener deescription
+   */
+
   openGenreDialog(name: string, description: string, image: string): void {
     this.dialog.open(MovieGenreComponent, {
       data: { name, description, image},
@@ -129,6 +147,14 @@ export class ProfilePageComponent implements OnInit { //implements OnInit
       height: '480px',
     });
   }
+
+  /**
+     * function to open directors dialog
+     * @param Name Directot's Name
+     * @param Bio Director's Bio
+     * @param Birth Director'd Birthday
+     * @param Death Director's death if apply
+     */
 
   openDirectorDialog(
     name: string,

@@ -32,6 +32,11 @@ export class MovieCardComponent implements OnInit {
     this.getMovies();
   }
 
+  /**
+   * get all movie function
+   * @returns list of all movies from Data Base
+   */
+
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
@@ -39,6 +44,12 @@ export class MovieCardComponent implements OnInit {
         return this.movies;
       });
   }
+
+  /**
+   *
+   * @param id the ID of movie to add
+   * @param Title the Title of movie
+   */
 
   addToFavourites(id: string, title: string) {
     this.fetchApiData2.addFavouriteMovie(id).subscribe((resp: any) => { 
@@ -54,6 +65,13 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   *
+   * @param Description sescription of movie
+   * @param Image Image of the movie
+   * @param Title Title of the movie
+   */
+
   openSynopsisDialog(synopsis: string, image: string): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: { synopsis, image },
@@ -62,6 +80,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+   /**
+   *
+   * @param Name Name/Title of Genre
+   * @param Description Description of genre
+   */
+
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(MovieGenreComponent, {
       data: { name, description},
@@ -69,6 +93,14 @@ export class MovieCardComponent implements OnInit {
       height: '480px',
     });
   }
+
+  /**
+   *
+   * @param Name Directors Name
+   * @param Bio Directore Bio
+   * @param Birth Directors birthday
+   * @param Death Directorth Death day if apply
+   */
 
   openDirectorDialog(
     name: string,
