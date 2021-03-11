@@ -4,17 +4,25 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+/**
+ * @param apiUrl url to backend of App
+ */
+
 // const apiUrl = 'http://localhost:8080/';
 // @Injectable({
 //   providedIn: 'root'
 // })
 
 const apiUrl = 'https://radiant-journey-16913.herokuapp.com/';
+
+/**
+ * function to register user
+ * and make api call
+ */
+
 @Injectable({
   providedIn: 'root'
 })
-
-
 
 export class UserRegistrationService {
   //Inject the HttpClient module to the constructor params
@@ -44,6 +52,11 @@ export class UserRegistrationService {
     );
   }
 }
+
+/**
+ * API call for log in
+ * @param userDetails Login/Password
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +88,10 @@ export class UserLoginService {
     );
   }
 }
+
+/**
+ * API to get All Movies
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -119,6 +136,10 @@ export class GetAllMoviesService {
   }
 }
 
+/**
+ * API call to get one Movie
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -156,6 +177,10 @@ export class GetOneMovieService {
   }
 }
 
+/**
+ * API call to get director by name
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -192,6 +217,10 @@ export class GetDirectorService {
   }
 }
 
+/**
+ * API call to get genre by name/title
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -227,6 +256,10 @@ export class GetGenreService {
     return throwError('Something bad happened: please try again later');
   }
 }
+
+/**
+ * API callto get user by username
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -265,6 +298,10 @@ export class GetUserService {
   }
 }
 
+/**
+ * API call to get All Movies
+ * from favourites list of the user
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -303,6 +340,10 @@ export class GetFavouriteMoviesService{
     );
   }
 }
+
+/**
+ * API call to add movie to favorite list
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -345,6 +386,11 @@ export class AddFavouriteMovieService {
   }
 }
 
+/**
+ * API call to delete movie
+ * from the list of favourites
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -381,6 +427,10 @@ export class DeleteFavouriteMovieService {
     return throwError('Something bad happened: please try again later.');
   }
 }
+
+/**
+ * API callto update user's info
+ */
 
 @Injectable({
   providedIn: 'root'
@@ -419,6 +469,10 @@ export class EditUserService {
     return throwError('Something bad happened: please try again later.');
   }
 }
+
+/**
+ * API call to delete user
+ */
 
 @Injectable({
   providedIn: 'root'
