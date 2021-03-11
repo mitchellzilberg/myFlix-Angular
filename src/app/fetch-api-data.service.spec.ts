@@ -1,16 +1,45 @@
+// import { TestBed } from '@angular/core/testing';
+
+// import { FetchApiDataService } from './fetch-api-data.service';
+
+// describe('FetchApiDataService', () => {
+//   let service: FetchApiDataService;
+
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({});
+//     service = TestBed.inject(FetchApiDataService);
+//   });
+
+//   it('should be created', () => {
+//     expect(service).toBeTruthy();
+//   });
+// });
+
 import { TestBed } from '@angular/core/testing';
 
-import { FetchApiDataService } from './fetch-api-data.service';
+import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 
 describe('FetchApiDataService', () => {
-  let service: FetchApiDataService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(FetchApiDataService);
+    let service: UserRegistrationFormComponent;
+  
+    beforeEach(() => {
+      TestBed.configureTestingModule({});
+      service = TestBed.inject(UserRegistrationFormComponent);
+    });
+  
+    it('should be created', () => {
+      expect(service).toBeTruthy();
+    });
+  
+    let loginService: UserLoginFormComponent;
+  
+    beforeEach(() => {
+      TestBed.configureTestingModule({});
+      loginService = TestBed.inject(UserLoginFormComponent);
+    });
+  
+    it('should be good to go', () => {
+      expect(loginService).toBeTruthy();
+    });
   });
-
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
